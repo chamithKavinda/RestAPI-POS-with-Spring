@@ -7,6 +7,8 @@ import org.example.coffeeshopposspringbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerServiceIMPL implements CustomerService{
     @Autowired
@@ -20,5 +22,10 @@ public class CustomerServiceIMPL implements CustomerService{
         if(savedCustomer == null){
             throw new DataPersistFailedException("Cannot save customer");
         }
+    }
+
+    @Override
+    public List<CustomerDTO> getAllCustomers() {
+        return mapping.convertToDTO(customerDao.findAll());
     }
 }
