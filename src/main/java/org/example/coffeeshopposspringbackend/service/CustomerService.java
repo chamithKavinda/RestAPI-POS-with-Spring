@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CustomerService {
     void saveCustomer(CustomerDTO customerDTO);
-
     List<CustomerDTO> getAllCustomers();
+    void updateCustomer(String custContact, CustomerDTO customer);
+
 }

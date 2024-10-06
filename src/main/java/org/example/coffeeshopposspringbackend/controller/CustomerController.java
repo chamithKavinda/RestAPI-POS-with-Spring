@@ -1,9 +1,8 @@
-package org.example.coffeeshopposspringbackend.api;
+package org.example.coffeeshopposspringbackend.controller;
 
 import lombok.RequiredArgsConstructor;
 
-import org.example.coffeeshopposspringbackend.dao.CustomerDao;
-import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
+import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.impl.CustomerDTO;
 import org.example.coffeeshopposspringbackend.service.CustomerService;
@@ -18,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/customers")
 @RequiredArgsConstructor
-public class CustomerServlet {
+public class CustomerController {
 
     @Autowired
     private final CustomerService customerService;
@@ -43,5 +42,18 @@ public class CustomerServlet {
         return customerService.getAllCustomers();
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping(value = "/{custContact}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateCustomer(@PathVariable ("custContact") String custContact, @RequestBody CustomerDTO customer) {
+        try {
+            if (customer == null || custContact == null || custContact.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            customerService.updateCustomer(custContact, customer);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (CustomerNotFound e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
