@@ -2,6 +2,7 @@ package org.example.coffeeshopposspringbackend.controller;
 
 import lombok.RequiredArgsConstructor;
 
+import org.example.coffeeshopposspringbackend.customeobj.CustomerResponse;
 import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.impl.CustomerDTO;
@@ -66,5 +67,10 @@ public class CustomerController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(value = "/{custContact}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public CustomerResponse getSelectedCustomer(@PathVariable ("custContact") String custContact){
+        return customerService.getSelectedCustomer(custContact);
     }
 }

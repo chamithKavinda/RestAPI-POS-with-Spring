@@ -1,5 +1,7 @@
 package org.example.coffeeshopposspringbackend.service;
 
+import org.example.coffeeshopposspringbackend.customeobj.CustomerErrorResponse;
+import org.example.coffeeshopposspringbackend.customeobj.CustomerResponse;
 import org.example.coffeeshopposspringbackend.dao.CustomerDao;
 import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
 import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
@@ -57,5 +59,12 @@ public class CustomerServiceIMPL implements CustomerService{
         }
     }
 
-
+    @Override
+    public CustomerResponse getSelectedCustomer(String custContact) {
+        if(customerDao.existsByCustContact(custContact)){
+            return mapping.convertToDTO(customerDao.getReferenceByCustContact(custContact));
+        }else {
+            return new CustomerErrorResponse(0,"Customer not found");
+        }
+    }
 }
