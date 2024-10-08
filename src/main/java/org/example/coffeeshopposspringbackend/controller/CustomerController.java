@@ -56,4 +56,15 @@ public class CustomerController {
         }
     }
 
+    @DeleteMapping(value = "/{custContact}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable ("custContact") String custContact) {
+        try {
+            customerService.deleteCustomer(custContact);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (CustomerNotFound e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

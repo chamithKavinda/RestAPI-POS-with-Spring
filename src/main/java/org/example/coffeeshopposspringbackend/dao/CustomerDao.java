@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CustomerDao extends JpaRepository<CustomerEntity, String> {
     Optional<CustomerEntity> findByCustContact(String custContact);
+
 }
