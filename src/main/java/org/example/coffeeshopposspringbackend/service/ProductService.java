@@ -1,8 +1,11 @@
 package org.example.coffeeshopposspringbackend.service;
 
+import org.example.coffeeshopposspringbackend.customeobj.ProductResponse;
 import org.example.coffeeshopposspringbackend.impl.ProductDTO;
 
-public interface ProductService {
+import java.util.List;
 
+public interface ProductService {
     void saveProduct(ProductDTO productDTO);
+    List<ProductDTO> getAllProducts();
 }
