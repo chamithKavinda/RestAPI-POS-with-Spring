@@ -11,9 +11,9 @@ import org.example.coffeeshopposspringbackend.dto.SuperDTO;
 @Data
 public class ProductDTO implements SuperDTO {
     private String pro_id;
-    private String pro_name;
-    private String pro_img;
-    private String price;
     private String category;
+    private String price;
+    private String pro_img;
+    private String pro_name;
     private String quantity;
 }

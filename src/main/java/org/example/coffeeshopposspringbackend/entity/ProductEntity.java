@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class ProductEntity implements SuperEntity {
     @Id
     private String pro_id;
-    private String pro_name;
+    private String category;
+    private String price;
     @Column(columnDefinition = "LONGTEXT")
     private String pro_img;
-    private String price;
-    private String category;
+    private String pro_name;
     private String quantity;
 }
