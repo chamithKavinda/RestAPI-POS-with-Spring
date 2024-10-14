@@ -31,7 +31,7 @@ public class CustomerServiceIMPL implements CustomerService{
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
-        return mapping.convertToDTO(customerDao.findAll());
+        return mapping.convertToCustomerDTO(customerDao.findAll());
     }
 
     @Override
