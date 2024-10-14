@@ -1,9 +1,7 @@
 package org.example.coffeeshopposspringbackend.util;
 
 import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
-import org.example.coffeeshopposspringbackend.entity.ProductEntity;
 import org.example.coffeeshopposspringbackend.impl.CustomerDTO;
-import org.example.coffeeshopposspringbackend.impl.ProductDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +25,6 @@ public class Mapping {
         return modelMapper.map(customers, new TypeToken<List<CustomerDTO>>() {}.getType());
     }
 
-    //matters of ProductEntity and DTO
-    public ProductEntity convertToProductEntity(ProductDTO productDTO){
-        return modelMapper.map(productDTO, ProductEntity.class);
-    }
-    public ProductDTO convertToProductDTO(ProductEntity productEntity){
-        return modelMapper.map(productEntity, ProductDTO.class);
-    }
-    public List<ProductDTO> convertProductToDTOList(List<ProductEntity> productEntities){
-        return modelMapper.map(productEntities, new TypeToken<List<ProductDTO>>() {}.getType());
-    }
+
 
 }
