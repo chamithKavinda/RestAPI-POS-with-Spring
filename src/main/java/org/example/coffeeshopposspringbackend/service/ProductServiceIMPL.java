@@ -1,10 +1,10 @@
 package org.example.coffeeshopposspringbackend.service;
 
-import org.example.coffeeshopposspringbackend.dao.CustomerDao;
+import org.example.coffeeshopposspringbackend.customeobj.CustomerErrorResponse;
+import org.example.coffeeshopposspringbackend.customeobj.ProductErrorResponse;
+import org.example.coffeeshopposspringbackend.customeobj.ProductResponse;
 import org.example.coffeeshopposspringbackend.dao.ProductDao;
-import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
 import org.example.coffeeshopposspringbackend.entity.ProductEntity;
-import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.exception.ProductNotFound;
 import org.example.coffeeshopposspringbackend.impl.ProductDTO;
@@ -49,4 +49,16 @@ public class ProductServiceIMPL implements ProductService{
             productDao.save(tmpproductEntity.get());
         }
     }
+
+    @Override
+    public ProductResponse getSelectedProduct(String pro_id) {
+        if(productDao.existsById(pro_id)){
+            System.out.println("2");
+            return mapping.convertToProductDTO(productDao.getReferenceById(pro_id));
+        }else {
+            return new ProductErrorResponse(0,"Product not found");
+        }
+    }
+
+
 }

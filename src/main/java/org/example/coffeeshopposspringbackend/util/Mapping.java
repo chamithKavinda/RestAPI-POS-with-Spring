@@ -28,7 +28,7 @@ public class Mapping {
     }
 
     //matters of ProductEntity and DTO
-    public ProductDTO convertToDTO(ProductEntity product){
+    public ProductDTO convertToProductDTO(ProductEntity product){
         return modelMapper.map(product, ProductDTO.class);
     }
     public ProductEntity convertToEntity(ProductDTO dto){

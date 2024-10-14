@@ -1,12 +1,10 @@
 package org.example.coffeeshopposspringbackend.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
+import org.example.coffeeshopposspringbackend.customeobj.ProductResponse;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.exception.ProductNotFound;
-import org.example.coffeeshopposspringbackend.impl.CustomerDTO;
 import org.example.coffeeshopposspringbackend.impl.ProductDTO;
-import org.example.coffeeshopposspringbackend.service.CustomerService;
 import org.example.coffeeshopposspringbackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,5 +53,11 @@ public class ProductController {
         }catch (ProductNotFound e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping(value = "/{pro_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductResponse getSelectedProduct(@PathVariable ("pro_id") String pro_id){
+        System.out.println("1");
+        return productService.getSelectedProduct(pro_id);
     }
 }
