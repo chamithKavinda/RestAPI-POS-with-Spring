@@ -34,7 +34,7 @@ public class Mapping {
     public ProductEntity convertToEntity(ProductDTO dto){
         return modelMapper.map(dto, ProductEntity.class);
     }
-    public List<ProductDTO> convertToDTOList(List<ProductEntity> products){
+    public List<ProductDTO> convertToProductDTOList(List<ProductEntity> products){
         return modelMapper.map(products, new TypeToken<List<ProductDTO>>() {}.getType());
     }
 
