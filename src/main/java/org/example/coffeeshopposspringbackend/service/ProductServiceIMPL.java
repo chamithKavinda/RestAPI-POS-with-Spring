@@ -4,7 +4,9 @@ import org.example.coffeeshopposspringbackend.customeobj.CustomerErrorResponse;
 import org.example.coffeeshopposspringbackend.customeobj.ProductErrorResponse;
 import org.example.coffeeshopposspringbackend.customeobj.ProductResponse;
 import org.example.coffeeshopposspringbackend.dao.ProductDao;
+import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
 import org.example.coffeeshopposspringbackend.entity.ProductEntity;
+import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.exception.ProductNotFound;
 import org.example.coffeeshopposspringbackend.impl.ProductDTO;
@@ -57,6 +59,16 @@ public class ProductServiceIMPL implements ProductService{
             return mapping.convertToProductDTO(productDao.getReferenceById(pro_id));
         }else {
             return new ProductErrorResponse(0,"Product not found");
+        }
+    }
+
+    @Override
+    public void deleteProduct(String pro_id) {
+        Optional<ProductEntity> findId = productDao.findById(pro_id);
+        if(!findId.isPresent()){
+            throw new ProductNotFound("Product not found");
+        }else {
+            productDao.deleteById(pro_id);
         }
     }
 

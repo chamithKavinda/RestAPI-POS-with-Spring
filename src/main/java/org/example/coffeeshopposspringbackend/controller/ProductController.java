@@ -2,6 +2,7 @@ package org.example.coffeeshopposspringbackend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.coffeeshopposspringbackend.customeobj.ProductResponse;
+import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.exception.ProductNotFound;
 import org.example.coffeeshopposspringbackend.impl.ProductDTO;
@@ -57,7 +58,18 @@ public class ProductController {
 
     @GetMapping(value = "/{pro_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductResponse getSelectedProduct(@PathVariable ("pro_id") String pro_id){
-        System.out.println("1");
         return productService.getSelectedProduct(pro_id);
+    }
+
+    @DeleteMapping(value = "/{pro_id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable ("pro_id") String pro_id) {
+        try {
+            productService.deleteProduct(pro_id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (ProductNotFound e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
