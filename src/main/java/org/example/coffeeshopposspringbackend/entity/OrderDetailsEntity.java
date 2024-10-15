@@ -14,12 +14,12 @@ public class OrderDetailsEntity implements SuperEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderDetailsId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orderId" , referencedColumnName = "orderId")
     private OrderEntity order;
     @ManyToOne
     @JoinColumn(name = "pro_id" , referencedColumnName = "pro_id")
     private ProductEntity product;
-    private int qty;
-    private double unitPrice;
+    private String qty;
+    private String unitPrice;
 }

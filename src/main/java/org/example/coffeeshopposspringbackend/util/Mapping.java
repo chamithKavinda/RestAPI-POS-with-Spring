@@ -1,6 +1,10 @@
 package org.example.coffeeshopposspringbackend.util;
 
+import org.example.coffeeshopposspringbackend.dto.OrderDTO;
+import org.example.coffeeshopposspringbackend.dto.OrderDetailDTO;
 import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
+import org.example.coffeeshopposspringbackend.entity.OrderDetailsEntity;
+import org.example.coffeeshopposspringbackend.entity.OrderEntity;
 import org.example.coffeeshopposspringbackend.entity.ProductEntity;
 import org.example.coffeeshopposspringbackend.dto.CustomerDTO;
 import org.example.coffeeshopposspringbackend.dto.ProductDTO;
@@ -38,5 +42,19 @@ public class Mapping {
         return modelMapper.map(products, new TypeToken<List<ProductDTO>>() {}.getType());
     }
 
+    //matters of OrderEntity and DTO
+    public OrderEntity convertToOrderEntity(OrderDTO orderDTO) {
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setOrderId(orderDTO.getOrderId());
+        orderEntity.setOrderDateTime(orderDTO.getOrderDateTime());
+        CustomerEntity customer = new CustomerEntity();
+        customer.setCustContact(orderDTO.getCustContact());
+        orderEntity.setCustomer(customer);
+        return orderEntity;
+    }
 
+    //matters of OrderDetailsEntity and DTO
+    public OrderDetailsEntity convertToOrderDetailEntity(OrderDetailDTO dto){
+        return modelMapper.map(dto, OrderDetailsEntity.class);
+    }
 }

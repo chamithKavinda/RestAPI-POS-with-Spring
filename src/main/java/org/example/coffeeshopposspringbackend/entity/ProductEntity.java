@@ -1,11 +1,11 @@
 package org.example.coffeeshopposspringbackend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +18,7 @@ public class ProductEntity implements SuperEntity {
     private String pro_name;
     private String price;
     private String category;
-    private String quantity;
+    private int quantity;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<OrderDetailsEntity> orderDetails;
 }

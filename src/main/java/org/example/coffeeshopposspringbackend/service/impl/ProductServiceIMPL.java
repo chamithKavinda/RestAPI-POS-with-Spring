@@ -45,7 +45,7 @@ public class ProductServiceIMPL implements ProductService {
             tmpproductEntity.get().setCategory(incomeproduct.getCategory());
             tmpproductEntity.get().setPrice(incomeproduct.getPrice());
             tmpproductEntity.get().setPro_name(incomeproduct.getPro_name());
-            tmpproductEntity.get().setQuantity(incomeproduct.getQuantity());
+            tmpproductEntity.get().setQuantity(Integer.parseInt(incomeproduct.getQuantity()));
             productDao.save(tmpproductEntity.get());
         }
     }
