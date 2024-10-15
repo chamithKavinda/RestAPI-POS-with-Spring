@@ -6,6 +6,8 @@ import org.example.coffeeshopposspringbackend.exception.DataPersistFailedExcepti
 import org.example.coffeeshopposspringbackend.exception.ProductNotFound;
 import org.example.coffeeshopposspringbackend.dto.ProductDTO;
 import org.example.coffeeshopposspringbackend.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +22,9 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private final ProductService productService;
+
+    static Logger logger = LoggerFactory.getLogger(ProductController.class);
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createProduct(@RequestBody ProductDTO product) {
         if (product == null){
@@ -27,10 +32,12 @@ public class ProductController {
         }else {
             try {
                 productService.saveProduct(product);
+                logger.info("Product saved : " + product);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             }catch (DataPersistFailedException e){
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }catch (Exception e){
+                logger.error(e.getMessage());
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
@@ -49,6 +56,7 @@ public class ProductController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             productService.updateProduct(pro_id, product);
+            logger.info("Product updated : " + product);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (ProductNotFound e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -64,10 +72,12 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable ("pro_id") String pro_id) {
         try {
             productService.deleteProduct(pro_id);
+            logger.info("Product deleted : " + pro_id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (ProductNotFound e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
+            logger.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

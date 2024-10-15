@@ -22,4 +22,5 @@ public class OrderDetailsEntity implements SuperEntity {
     private ProductEntity product;
     private String qty;
     private String unitPrice;
+
 }

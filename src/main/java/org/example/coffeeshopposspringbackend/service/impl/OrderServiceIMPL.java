@@ -35,39 +35,29 @@ public class OrderServiceIMPL implements OrderService {
     private Mapping mapping;
     @Override
     public String saveOrder(OrderDTO orderDTO) {
-        System.out.println("7");
         orderDTO.setOrderId(generateOrderID());
-        System.out.println("8");
         orderDTO.setOrderDateTime(DateTime.getCurrentDateTime());
-        System.out.println("9");
         OrderEntity orderEntity = mapping.convertToOrderEntity(orderDTO);
 
-        System.out.println("10");
         List<OrderDetailsEntity> orderDetailEntities = orderDTO.getOrderDetails().stream().map(detail -> {
-                    System.out.println("11");
                     OrderDetailsEntity orderDetailEntity = mapping.convertToOrderDetailEntity(detail);
-                    System.out.println("12");
                     orderDetailEntity.setOrder(orderEntity);
-                    System.out.println("13");
                     System.out.println(orderDetailEntity);
                     return orderDetailEntity;
                 })
                 .collect(Collectors.toList());
 
-        System.out.println("14");
+
         orderEntity.setOrderDetails(orderDetailEntities);
-        System.out.println("15");
         boolean allItemsUpdated = orderDTO.getOrderDetails().stream().allMatch(this::updateItemQty);
-        System.out.println("22");
         if (allItemsUpdated) {
-            System.out.println("23");
             orderDAO.save(orderEntity);
-            System.out.println("24");
             return "Order placed successfully";
         } else {
             throw new DataPersistFailedException("place order failed");
         }
     }
+
 
     private boolean updateItemQty(OrderDetailDTO orderDetailDTO) {
         ProductEntity product = productDao.findById(orderDetailDTO.getPro_id()).orElseThrow(() -> new ProductNotFound("Product not found"));
@@ -113,4 +103,6 @@ public class OrderServiceIMPL implements OrderService {
             }
         }
     }
+
+
 }
