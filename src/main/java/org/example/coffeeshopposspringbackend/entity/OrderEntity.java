@@ -19,6 +19,4 @@ public class OrderEntity implements SuperEntity{
     @JoinColumn(name = "custContact", referencedColumnName = "custContact")
     private CustomerEntity customer;
     private LocalDateTime orderDateTime;
-
-
 }

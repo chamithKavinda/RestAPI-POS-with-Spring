@@ -1,15 +1,13 @@
-package org.example.coffeeshopposspringbackend.service;
+package org.example.coffeeshopposspringbackend.service.impl;
 
-import org.example.coffeeshopposspringbackend.customeobj.CustomerErrorResponse;
-import org.example.coffeeshopposspringbackend.customeobj.ProductErrorResponse;
+import org.example.coffeeshopposspringbackend.customeobj.impl.ProductErrorResponse;
 import org.example.coffeeshopposspringbackend.customeobj.ProductResponse;
 import org.example.coffeeshopposspringbackend.dao.ProductDao;
-import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
 import org.example.coffeeshopposspringbackend.entity.ProductEntity;
-import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.exception.ProductNotFound;
-import org.example.coffeeshopposspringbackend.impl.ProductDTO;
+import org.example.coffeeshopposspringbackend.dto.ProductDTO;
+import org.example.coffeeshopposspringbackend.service.ProductService;
 import org.example.coffeeshopposspringbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceIMPL implements ProductService{
+public class ProductServiceIMPL implements ProductService {
     @Autowired
     private ProductDao productDao;
     @Autowired

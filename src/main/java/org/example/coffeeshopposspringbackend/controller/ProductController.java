@@ -2,10 +2,9 @@ package org.example.coffeeshopposspringbackend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.coffeeshopposspringbackend.customeobj.ProductResponse;
-import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
 import org.example.coffeeshopposspringbackend.exception.ProductNotFound;
-import org.example.coffeeshopposspringbackend.impl.ProductDTO;
+import org.example.coffeeshopposspringbackend.dto.ProductDTO;
 import org.example.coffeeshopposspringbackend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

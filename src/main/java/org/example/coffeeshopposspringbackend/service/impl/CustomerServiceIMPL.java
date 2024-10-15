@@ -1,12 +1,13 @@
-package org.example.coffeeshopposspringbackend.service;
+package org.example.coffeeshopposspringbackend.service.impl;
 
-import org.example.coffeeshopposspringbackend.customeobj.CustomerErrorResponse;
+import org.example.coffeeshopposspringbackend.customeobj.impl.CustomerErrorResponse;
 import org.example.coffeeshopposspringbackend.customeobj.CustomerResponse;
 import org.example.coffeeshopposspringbackend.dao.CustomerDao;
 import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
 import org.example.coffeeshopposspringbackend.exception.CustomerNotFound;
 import org.example.coffeeshopposspringbackend.exception.DataPersistFailedException;
-import org.example.coffeeshopposspringbackend.impl.CustomerDTO;
+import org.example.coffeeshopposspringbackend.dto.CustomerDTO;
+import org.example.coffeeshopposspringbackend.service.CustomerService;
 import org.example.coffeeshopposspringbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CustomerServiceIMPL implements CustomerService{
+public class CustomerServiceIMPL implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
     @Autowired

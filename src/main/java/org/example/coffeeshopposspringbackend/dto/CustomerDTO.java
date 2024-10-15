@@ -1,4 +1,4 @@
-package org.example.coffeeshopposspringbackend.impl;
+package org.example.coffeeshopposspringbackend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

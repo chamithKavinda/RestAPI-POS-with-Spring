@@ -2,8 +2,8 @@ package org.example.coffeeshopposspringbackend.util;
 
 import org.example.coffeeshopposspringbackend.entity.CustomerEntity;
 import org.example.coffeeshopposspringbackend.entity.ProductEntity;
-import org.example.coffeeshopposspringbackend.impl.CustomerDTO;
-import org.example.coffeeshopposspringbackend.impl.ProductDTO;
+import org.example.coffeeshopposspringbackend.dto.CustomerDTO;
+import org.example.coffeeshopposspringbackend.dto.ProductDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

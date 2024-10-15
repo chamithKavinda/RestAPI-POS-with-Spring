@@ -1,7 +1,7 @@
 package org.example.coffeeshopposspringbackend.service;
 
 import org.example.coffeeshopposspringbackend.customeobj.CustomerResponse;
-import org.example.coffeeshopposspringbackend.impl.CustomerDTO;
+import org.example.coffeeshopposspringbackend.dto.CustomerDTO;
 
 import java.util.List;
 
