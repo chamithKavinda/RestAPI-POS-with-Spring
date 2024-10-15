@@ -84,7 +84,7 @@ The MySQL database schema includes the following tables:
 
 ## Examples
 
-Use Postman to test the API endpoints. You can import the [[Postman documentation]([https://documenter.getpostman.com/view/35385399/2sAXxTdWVj])] to get started with sample requests.
+Use Postman to test the API endpoints. You can import the [Postman documentation](https://documenter.getpostman.com/view/35385399/2sAXxTdWVj) to get started with sample requests.
 
 ## Troubleshooting
 
@@ -94,7 +94,7 @@ Use Postman to test the API endpoints. You can import the [[Postman documentatio
 
 ## Documentation
 
-For detailed API documentation, refer to the Postman documentation [[here]([https://documenter.getpostman.com/view/35385399/2sAXxTdWVj])].
+For detailed API documentation, refer to the Postman documentation [here](https://documenter.getpostman.com/view/35385399/2sAXxTdWVj).
 
 ## License
 
